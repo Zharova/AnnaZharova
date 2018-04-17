@@ -9,10 +9,11 @@ const ARROW_CPY = -40;
 const ARROW_HEIGHT_FACTOR = 10;
 const LEFT_A = 15;
 const LEFT_B = 22.5;
+const TOP_A = 0.7;
+const TOP_B = 0.8;
 const state = {};
 
 function init() {
-
     const { a, b, ab } = generateTerms();
     state.a = a;
     state.b = b;
@@ -20,94 +21,99 @@ function init() {
     $('#term-a').text(a);
     $('#term-b').text(b);
 
-    prepareA(a, b);
+    prepareA();
 }
 
-function prepareA(a, b) {
+function prepareA() {
     const $input = $('.a');
-
-    drawArrow(1, (a + 1) / 2, a - MIN_A, a + 1);
-    prepareInputA(a);
     $input.focus();
+    drawArrow(1, (state.a + 1) / 2, state.a - MIN_A, state.a + 1);
+    prepareInputA(state.a);
 
-    $input.on('change', () => {
-        $('#aContainer').removeClass('wrong-answer');
-        if (a === Number($input.val())) {
-            $input.css({ color: 'green', border: 'none'});
-            $input.prop('disabled', true);
-
-            prepareB(b, a);
-            prepareInputB(b);
-
-            $input.off('change');
-            $('.b').focus()
-        } else {
-            $input.addClass('wrong-introduced-answer');
-            $('#aContainer').addClass('wrong-answer');
-        }
-    })
+    $input.on('change', onChangeA);
 }
 
-function prepareB(b, a) {
+
+function prepareB() {
     const $input = $('.b');
+    $input.focus();
+    drawArrow(state.a + 1, state.a + 1 + state.b / 2, state.b - MIN_B, state.a + state.b + 1);
+    prepareInputB();
 
-    drawArrow(a + 1, a + 1 + b / 2, b - MIN_B, a + b + 1);
-    prepareInputB(b, a);
-
-    $input.on('change', () => {
-        $('#bContainer').removeClass('wrong-answer');
-
-        if (b === Number($input.val())) {
-            $input.css({ color: 'green', border: 'none' });
-            $input.prop('disabled', true);
-
-            const summ = $('.summ');
-            summ.removeAttr('value');
-            summ.removeAttr('disabled');
-            summ.css({ border: '3px solid black' });
-            summ.focus();
-
-            summ.on('change', () => {
-                summ.removeClass('wrong-introduced-answer');
-
-                if (state.ab === Number(summ.val())) {
-                    summ.css({ color: 'green', border: 'none' });
-                    summ.prop('disabled', true);
-                    summ.blur();
-
-                    //можно сразу генерировать следующую задачу
-                    // location.reload();
-
-                } else {
-                    summ.addClass('wrong-introduced-answer');
-                }
-            });
-        } else {
-            $input.addClass('wrong-introduced-answer');
-            $('#bContainer').addClass('wrong-answer')
-        }
-    })
+    $input.on('change', onChangeB);
 }
 
 function prepareInputA(a) {
     const $input = $('.a');
-
     $input.css({
-        top: ARROW_CPY - (0.7 * a - MIN_A) * ARROW_HEIGHT_FACTOR,
+        top: ARROW_CPY - (TOP_A * a - MIN_A) * ARROW_HEIGHT_FACTOR,
         left: SEGMENT_WIDTH * (a + 1) / 2 + LEFT_A,
         border: '3px solid black'
     });
 }
 
-function prepareInputB(b, a) {
+function prepareInputB() {
     const $input = $('.b');
-
-    $input.removeAttr('disabled');
     $input.css({
-        top: ARROW_CPY - (0.8 * b - MIN_B ) * ARROW_HEIGHT_FACTOR,
-        left: SEGMENT_WIDTH * ((a + 1) + (b + 1) / 2) - LEFT_B,
+        top: ARROW_CPY - (TOP_B * state.b - MIN_B ) * ARROW_HEIGHT_FACTOR,
+        left: SEGMENT_WIDTH * ((state.a + 1) + (state.b + 1) / 2) - LEFT_B,
         border: '3px solid black'
     });
+}
+
+function prepareInputSumm() {
+    const summ = $('.summ');
+    summ.removeAttr('value');
+    summ.removeAttr('disabled');
+    summ.css({ border: '3px solid black' });
+    summ.focus();
+
+    summ.on('change', onChangeSumm);
+}
+
+function onChangeA() {
+    const $input = $('.a');
+    $('#aContainer').removeClass('wrong-answer');
+    if (state.a === Number($input.val())) {
+        $input.css({ color: 'green', border: 'none'});
+        $input.prop('disabled', true);
+        prepareB();
+        $input.off('change');
+
+    } else {
+        $input.addClass('wrong-introduced-answer');
+        $('#aContainer').addClass('wrong-answer');
+    }
+}
+
+function onChangeB() {
+    const $input = $('.b');
+    $('#bContainer').removeClass('wrong-answer');
+    if (state.b === Number($input.val())) {
+        $input.css({ color: 'green', border: 'none' });
+        $input.prop('disabled', true);
+        prepareInputSumm();
+    } else {
+
+        $input.addClass('wrong-introduced-answer');
+        $('#bContainer').addClass('wrong-answer')
+    }
+}
+
+
+function onChangeSumm() {
+    const summ = $('.summ');
+    summ.removeClass('wrong-introduced-answer');
+    if (state.ab === Number(summ.val())) {
+        summ.css({ color: 'green', border: 'none' });
+        summ.prop('disabled', true);
+        summ.blur();
+
+        //можно сразу генерировать следующую задачу
+        // location.reload();
+    } else {
+        summ.addClass('wrong-introduced-answer');
+    }
 }
 
 function generateTerms() {
@@ -122,7 +128,6 @@ function drawArrow(x1, cpx, cpy, x2) {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     ctx.strokeStyle = "#cb101e";
-
 
 
     ctx.beginPath();
