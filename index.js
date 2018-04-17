@@ -33,7 +33,6 @@ function prepareA() {
     $input.on('change', onChangeA);
 }
 
-
 function prepareB() {
     const $input = $('.term-b-input');
     $input.focus();
