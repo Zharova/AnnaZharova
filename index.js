@@ -142,4 +142,4 @@ function drawArrow(x1, cpx, cpy, x2) {
     ctx.stroke();
 }
 
-document.addEventListener('DOMContentLoaded', init);
+$(init);
