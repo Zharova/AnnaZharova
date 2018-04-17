@@ -1,0 +1,118 @@
+body {
+    text-align: center;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.initial {
+    margin: auto;
+    height: 50%;
+    width: 100%;
+    margin-top: 10%;
+    font-size: xx-large;
+    display: inline-flex;
+    justify-content: center;
+}
+
+div.initial > div , span, input {
+    text-align: center;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.scale {
+    position: relative;
+    display: inline-block;
+    margin-top: 10%;
+    height: 120px;
+    width: 875px;
+    background: url("sprite.png");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+
+
+div.initial div {
+    width: 70px;
+    height: 100px;
+    margin: 20px;
+}
+
+/*div.initial div.number {*/
+    /*background: #ffc511;*/
+    /*border-radius: 7px;*/
+/*}*/
+
+.wrong-answer {
+    background: #ffc511;
+    border-radius: 7px;
+}
+
+span {
+    position: relative;
+    top: 35px;
+}
+
+input.summ {
+    width: 70px;
+    height: 100px;
+    margin: 20px;
+    font-size: xx-large;
+    border: none;
+}
+
+input.answer {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    border: none;
+    font-size: large;
+}
+
+canvas {
+    height: 60px;
+    width: 100%;
+}
+
+
+/*// if (checkAnswer(term, selector)) {*/
+/*//     $(selector).css({*/
+/*//         color: 'green',*/
+/*//         border: 'none',*/
+/*//         disabled: "disabled"*/
+/*//     });*/
+
+/*// drawArrows(*/
+/*//     SEGMENT_WIDTH * (a + 1),*/
+/*//     SCALE_TOP,*/
+/*//     SEGMENT_WIDTH * ((a + 1) + b / 2),*/
+/*//     ARROW_CPY - (b - MIN_B) * ARROW_HEIGHT_FACTOR,*/
+/*//     SEGMENT_WIDTH * (a + b + 1),*/
+/*//     SCALE_TOP*/
+/*// );*/
+/*//*/
+/*// prepareInput(b, '.b', true);*/
+/*// $('.b').removeAttr('disabled');*/
+
+/*// if (!isSecondTerm) {*/
+/*//     $('#aContainer').removeClass('wrong-answer')*/
+/*// } else {*/
+     /*//     $('#bContainer').removeClass('wrong-answer');*/
+     /*//     // console.log($('.summ').css())*/
+     /*//     $('.summ').removeAttr('disabled');*/
+/*//     $('.summ').css({ border: '3px solid black' });*/
+/*//     $('.summ').text('');*/
+/*// }*/
+
+/*// } else {*/
+/*//     $(selector).css({*/
+/*//         color: 'red'*/
+/*//     });*/
+/*//     if (!isSecondTerm) {*/
+/*//         $('#aContainer').addClass('wrong-answer')*/
+/*//     } else {*/
+         /*//         $('#bContainer').addClass('wrong-answer')*/
+         /*//     }*/
+/*// }*/
+/*});*/

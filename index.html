@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <link rel="stylesheet" href="index.css">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+    <script src="index.js"></script>
+    <title>Test</title>
+</head>
+<body>
+
+    <div class="initial">
+        <div class="number" id="aContainer" >
+            <span id="a" ></span>
+        </div>
+        <div>
+            <span>+</span>
+        </div>
+        <div class="number" id="bContainer">
+            <span id="b" ></span>
+        </div>
+        <div>
+            <span>=</span>
+        </div>
+        <input class="summ" name="ab" value="?" disabled>
+    </div>
+    <div class="scale" >
+        <input class="answer a" > <input class="answer b" disabled>
+        <canvas id="canvas" width="875" height="80"></canvas>
+    </div>
+</body>
+</html>
