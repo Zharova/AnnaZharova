@@ -13,9 +13,11 @@ body {
     justify-content: center;
 }
 
-div.initial > div , span, input {
+div.initial > div {
+    width: 70px;
+    height: 100px;
+    margin: 20px;
     text-align: center;
-
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -32,26 +34,28 @@ div.initial > div , span, input {
     background-repeat: no-repeat;
 }
 
-
 div.initial div {
     width: 70px;
     height: 100px;
     margin: 20px;
 }
 
-/*div.initial div.number {*/
-    /*background: #ffc511;*/
-    /*border-radius: 7px;*/
-/*}*/
-
 .wrong-answer {
     background: #ffc511;
     border-radius: 7px;
 }
 
-span {
+.wrong-introduced-answer {
+    color: red;
+}
+
+.symbol {
     position: relative;
     top: 35px;
+}
+
+input {
+    text-align: center;
 }
 
 input.summ {
@@ -64,10 +68,14 @@ input.summ {
 
 input.answer {
     position: absolute;
+    top: -50px;
+    left: 0;
     width: 30px;
-    height: 40px;
+    height: 20px;
     border: none;
+    border-radius: 5px;
     font-size: large;
+    margin-left: -16px;
 }
 
 canvas {
