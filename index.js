@@ -28,7 +28,7 @@ function prepareA() {
     const $input = $('.term-a-input');
     $input.focus();
     drawArrow(1, (state.a + 1) / 2, state.a - MIN_A, state.a + 1);
-    prepareInputA(state.a);
+    prepareInputA();
 
     $input.on('change', onChangeA);
 }
@@ -43,11 +43,11 @@ function prepareB() {
     $input.on('change', onChangeB);
 }
 
-function prepareInputA(a) {
+function prepareInputA() {
     const $input = $('.term-a-input');
     $input.css({
-        top: ARROW_CPY - (TOP_A * a - MIN_A) * ARROW_HEIGHT_FACTOR,
-        left: SEGMENT_WIDTH * (a + 1) / 2 + LEFT_A,
+        top: ARROW_CPY - (TOP_A * state.a - MIN_A) * ARROW_HEIGHT_FACTOR,
+        left: SEGMENT_WIDTH * (state.a + 1) / 2 + LEFT_A,
         border: '3px solid black'
     });
 }
@@ -62,13 +62,13 @@ function prepareInputB() {
 }
 
 function prepareInputSumm() {
-    const summ = $('.summ');
-    summ.removeAttr('value');
-    summ.removeAttr('disabled');
-    summ.css({ border: '3px solid black' });
-    summ.focus();
+    const $summ = $('.summ');
+    $summ.removeAttr('value');
+    $summ.removeAttr('disabled');
+    $summ.css({ border: '3px solid black' });
+    $summ.focus();
 
-    summ.on('change', onChangeSumm);
+    $summ.on('change', onChangeSumm);
 }
 
 function onChangeA() {
@@ -102,17 +102,17 @@ function onChangeB() {
 
 
 function onChangeSumm() {
-    const summ = $('.summ');
-    summ.removeClass('wrong-introduced-answer');
-    if (state.ab === Number(summ.val())) {
-        summ.css({ color: 'green', border: 'none' });
-        summ.prop('disabled', true);
-        summ.blur();
+    const $summ = $('.summ');
+    $summ.removeClass('wrong-introduced-answer');
+    if (state.ab === Number($summ.val())) {
+        $summ.css({ color: 'green', border: 'none' });
+        $summ.prop('disabled', true);
+        $summ.blur();
 
         //можно сразу генерировать следующую задачу
         // location.reload();
     } else {
-        summ.addClass('wrong-introduced-answer');
+        $summ.addClass('wrong-introduced-answer');
     }
 }
 
