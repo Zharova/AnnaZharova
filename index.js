@@ -25,7 +25,7 @@ function init() {
 }
 
 function prepareA() {
-    const $input = $('.a');
+    const $input = $('.term-a-input');
     $input.focus();
     drawArrow(1, (state.a + 1) / 2, state.a - MIN_A, state.a + 1);
     prepareInputA(state.a);
@@ -35,7 +35,7 @@ function prepareA() {
 
 
 function prepareB() {
-    const $input = $('.b');
+    const $input = $('.term-b-input');
     $input.focus();
     drawArrow(state.a + 1, state.a + 1 + state.b / 2, state.b - MIN_B, state.a + state.b + 1);
     prepareInputB();
@@ -44,7 +44,7 @@ function prepareB() {
 }
 
 function prepareInputA(a) {
-    const $input = $('.a');
+    const $input = $('.term-a-input');
     $input.css({
         top: ARROW_CPY - (TOP_A * a - MIN_A) * ARROW_HEIGHT_FACTOR,
         left: SEGMENT_WIDTH * (a + 1) / 2 + LEFT_A,
@@ -53,7 +53,7 @@ function prepareInputA(a) {
 }
 
 function prepareInputB() {
-    const $input = $('.b');
+    const $input = $('.term-b-input');
     $input.css({
         top: ARROW_CPY - (TOP_B * state.b - MIN_B ) * ARROW_HEIGHT_FACTOR,
         left: SEGMENT_WIDTH * ((state.a + 1) + (state.b + 1) / 2) - LEFT_B,
@@ -72,7 +72,7 @@ function prepareInputSumm() {
 }
 
 function onChangeA() {
-    const $input = $('.a');
+    const $input = $('.term-a-input');
     $('#aContainer').removeClass('wrong-answer');
     if (state.a === Number($input.val())) {
         $input.css({ color: 'green', border: 'none'});
@@ -87,7 +87,7 @@ function onChangeA() {
 }
 
 function onChangeB() {
-    const $input = $('.b');
+    const $input = $('.term-b-input');
     $('#bContainer').removeClass('wrong-answer');
     if (state.b === Number($input.val())) {
         $input.css({ color: 'green', border: 'none' });
