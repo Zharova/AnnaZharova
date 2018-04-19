@@ -46,8 +46,7 @@ function prepareInputA() {
     const $input = $('.term-a-input');
     $input.css({
         top: ARROW_CPY - (TOP_A * state.a - MIN_A) * ARROW_HEIGHT_FACTOR,
-        left: SEGMENT_WIDTH * (state.a + 1) / 2 + LEFT_A,
-        border: '3px solid black'
+        left: SEGMENT_WIDTH * (state.a + 1) / 2 + LEFT_A
     });
 }
 
@@ -55,8 +54,7 @@ function prepareInputB() {
     const $input = $('.term-b-input');
     $input.css({
         top: ARROW_CPY - (TOP_B * state.b - MIN_B ) * ARROW_HEIGHT_FACTOR,
-        left: SEGMENT_WIDTH * ((state.a + 1) + (state.b + 1) / 2) - LEFT_B,
-        border: '3px solid black'
+        left: SEGMENT_WIDTH * ((state.a + 1) + (state.b + 1) / 2) - LEFT_B
     });
 }
 
@@ -64,7 +62,6 @@ function prepareInputSumm() {
     const $summ = $('.summ');
     $summ.removeClass('hidden');
     $summ.removeAttr('disabled');
-    $summ.css({ border: '3px solid black' });
     $summ.focus();
 
     $summ.on('keyup', onChangeSumm);
@@ -111,7 +108,7 @@ function onChangeSumm() {
         $summ.prop('disabled', true);
         $summ.blur();
 
-        //можно сразу генерировать следующую задачу
+        // Можно сразу генерировать следующую задачу.
         // location.reload();
         // $summ.addClass('hidden');
     } else {

@@ -54,13 +54,6 @@ div.initial div {
     top: 35px;
 }
 
-.hidden {
-    border-radius: 4px;
-    background: url(question.png);
-    background-position: center;
-    background-size: cover;
-}
-
 input {
     text-align: center;
 }
@@ -71,6 +64,14 @@ input.summ {
     margin: 20px;
     font-size: xx-large;
     border: none;
+}
+
+.summ.hidden {
+    border-radius: 4px;
+    background: url(question.png);
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
 }
 
 input.answer {
