@@ -30,7 +30,7 @@ function prepareA() {
     drawArrow(1, (state.a + 1) / 2, state.a - MIN_A, state.a + 1);
     prepareInputA();
 
-    $input.on('change', onChangeA);
+    $input.on('keyup', onChangeA);
 }
 
 function prepareB() {
@@ -39,7 +39,7 @@ function prepareB() {
     drawArrow(state.a + 1, state.a + 1 + state.b / 2, state.b - MIN_B, state.a + state.b + 1);
     prepareInputB();
 
-    $input.on('change', onChangeB);
+    $input.on('keyup', onChangeB);
 }
 
 function prepareInputA() {
@@ -62,22 +62,23 @@ function prepareInputB() {
 
 function prepareInputSumm() {
     const $summ = $('.summ');
-    $summ.removeAttr('value');
+    $summ.removeClass('hidden');
     $summ.removeAttr('disabled');
     $summ.css({ border: '3px solid black' });
     $summ.focus();
 
-    $summ.on('change', onChangeSumm);
+    $summ.on('keyup', onChangeSumm);
 }
 
 function onChangeA() {
     const $input = $('.term-a-input');
     $('#aContainer').removeClass('wrong-answer');
+
     if (state.a === Number($input.val())) {
         $input.css({ color: 'green', border: 'none'});
         $input.prop('disabled', true);
         prepareB();
-        $input.off('change');
+        $input.off('keyup');
 
     } else {
         $input.addClass('wrong-introduced-answer');
@@ -88,12 +89,13 @@ function onChangeA() {
 function onChangeB() {
     const $input = $('.term-b-input');
     $('#bContainer').removeClass('wrong-answer');
+
     if (state.b === Number($input.val())) {
         $input.css({ color: 'green', border: 'none' });
         $input.prop('disabled', true);
         prepareInputSumm();
+        $input.off('keyup');
     } else {
-
         $input.addClass('wrong-introduced-answer');
         $('#bContainer').addClass('wrong-answer')
     }
@@ -103,6 +105,7 @@ function onChangeB() {
 function onChangeSumm() {
     const $summ = $('.summ');
     $summ.removeClass('wrong-introduced-answer');
+
     if (state.ab === Number($summ.val())) {
         $summ.css({ color: 'green', border: 'none' });
         $summ.prop('disabled', true);
@@ -110,6 +113,7 @@ function onChangeSumm() {
 
         //можно сразу генерировать следующую задачу
         // location.reload();
+        // $summ.addClass('hidden');
     } else {
         $summ.addClass('wrong-introduced-answer');
     }

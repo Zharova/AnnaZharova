@@ -54,6 +54,13 @@ div.initial div {
     top: 35px;
 }
 
+.hidden {
+    border-radius: 4px;
+    background: url(question.png);
+    background-position: center;
+    background-size: cover;
+}
+
 input {
     text-align: center;
 }
