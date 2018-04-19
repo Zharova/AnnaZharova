@@ -46,7 +46,8 @@ function prepareInputA() {
     const $input = $('.term-a-input');
     $input.css({
         top: ARROW_CPY - (TOP_A * state.a - MIN_A) * ARROW_HEIGHT_FACTOR,
-        left: SEGMENT_WIDTH * (state.a + 1) / 2 + LEFT_A
+        left: SEGMENT_WIDTH * (state.a + 1) / 2 + LEFT_A,
+        border: '1px solid #333333'
     });
 }
 
@@ -54,7 +55,8 @@ function prepareInputB() {
     const $input = $('.term-b-input');
     $input.css({
         top: ARROW_CPY - (TOP_B * state.b - MIN_B ) * ARROW_HEIGHT_FACTOR,
-        left: SEGMENT_WIDTH * ((state.a + 1) + (state.b + 1) / 2) - LEFT_B
+        left: SEGMENT_WIDTH * ((state.a + 1) + (state.b + 1) / 2) - LEFT_B,
+        border: '1px solid #333333'
     });
 }
 
@@ -62,6 +64,7 @@ function prepareInputSumm() {
     const $summ = $('.summ');
     $summ.removeClass('hidden');
     $summ.removeAttr('disabled');
+    $summ.css({ border: '1px solid #333333' });
     $summ.focus();
 
     $summ.on('keyup', onChangeSumm);
@@ -104,7 +107,7 @@ function onChangeSumm() {
     $summ.removeClass('wrong-introduced-answer');
 
     if (state.ab === Number($summ.val())) {
-        $summ.css({ color: 'green', border: 'none' });
+        $summ.css({ color: 'green', border: '1px solid transparent' });
         $summ.prop('disabled', true);
         $summ.blur();
 

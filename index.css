@@ -63,7 +63,7 @@ input.summ {
     height: 100px;
     margin: 20px;
     font-size: xx-large;
-    border: none;
+    border: 1px solid transparent;
 }
 
 .summ.hidden {
